@@ -45,6 +45,7 @@ export default function StockManagementPage() {
         const apiData = await getStock(selectedPlant.code, day);
         if (!cancelled && apiData) {
           setStockData(apiData);
+          setLoading(false);
           return;
         }
       } catch {
