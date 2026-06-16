@@ -1,0 +1,18 @@
+.skeleton-loader {
+  background: #E6E9ED;
+  background: linear-gradient(
+    110deg,
+    #ECEFF1 8%,
+    #F5F7F9 18%,
+    #ECEFF1 33%
+  );
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+  display: inline-block;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}

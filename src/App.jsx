@@ -1,12 +1,33 @@
 import React from 'react';
-import FieldOpsIntelligence from './FieldOpsIntelligence';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { PlantProvider } from './context/PlantContext/PlantContext';
+import { ToastProvider } from './context/ToastContext/ToastContext';
+import AppLayout from './components/layout/AppLayout/AppLayout';
+import InboundDeliveryPage from './pages/InboundDelivery/InboundDeliveryPage';
+import DeliveryDetailPage from './pages/DeliveryDetail/DeliveryDetailPage';
+import StockManagementPage from './pages/StockManagement/StockManagementPage';
+import SchedulePage from './pages/Schedule/SchedulePage';
+import DocketPage from './pages/Docket/DocketPage';
+import PortalPage from './pages/Portal/PortalPage';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <FieldOpsIntelligence />
-    </div>
+    <BrowserRouter>
+      <PlantProvider>
+        <ToastProvider>
+          <Routes>
+            <Route path="/" element={<Navigate to="/deliveries" replace />} />
+            <Route element={<AppLayout />}>
+              <Route path="/deliveries" element={<InboundDeliveryPage />} />
+              <Route path="/deliveries/:id" element={<DeliveryDetailPage />} />
+              <Route path="/stock" element={<StockManagementPage />} />
+              <Route path="/schedule" element={<SchedulePage />} />
+              <Route path="/docket" element={<DocketPage />} />
+              <Route path="/portal" element={<PortalPage />} />
+            </Route>
+          </Routes>
+        </ToastProvider>
+      </PlantProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;
